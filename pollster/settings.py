@@ -26,7 +26,7 @@ SECRET_KEY = 'xz_hx*iu-(a4*apexgv=km$6vms_wn_x3bby^t6rc8k^#=djr*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['bharathpolls.herokuapp.com']
+ALLOWED_HOSTS = ['bharathpolls.herokuapp.com', '127.0.0.1']
 
 
 # Application definition

@@ -11,6 +11,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <title>Pollster {% block title %}{% endblock %}</title>
+    <style>
+        input[type=radio]:checked~.check {
+            border: 5px solid #0DFF92;
+        }
+
+        input[type=radio]:checked~.check::before {
+            background: #0DFF92;
+        }
+
+        input[type=radio]:checked~label {
+            color: #007bff;
+        }
+    </style>
 </head>
 
 <body>
