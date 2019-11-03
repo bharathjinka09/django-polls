@@ -56,7 +56,10 @@ def vote(request, question_id):
 
 class PollsView(APIView):
     def get(self, request):
-        questions = Question.objects.all()
-        serializer = PollsSerializer(questions, many=True)
+        # questions = Question.objects.all()
+        # serializer = PollsSerializer(questions, many=True)
+
+        choices = Choice.objects.all()
+        serializer = PollsSerializer(choices, many=True)
 
         return Response(serializer.data)
