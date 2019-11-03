@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .models import Question, Choice
-from polls.serializers import PollsSerializer
+from polls.serializers import PollsSerializer, QuestionSerializer
 
 # Get questions and display them
 
@@ -56,10 +56,15 @@ def vote(request, question_id):
 
 class PollsView(APIView):
     def get(self, request):
-        # questions = Question.objects.all()
-        # serializer = PollsSerializer(questions, many=True)
-
         choices = Choice.objects.all()
         serializer = PollsSerializer(choices, many=True)
+
+        return Response(serializer.data)
+
+
+class QuestionsView(APIView):
+    def get(self, request):
+        questions = Question.objects.all()
+        serializer = QuestionSerializer(questions, many=True)
 
         return Response(serializer.data)

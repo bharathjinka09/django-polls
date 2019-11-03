@@ -5,7 +5,11 @@ from polls.models import Question, Choice
 
 class PollsSerializer(serializers.ModelSerializer):
     class Meta:
-        # model = Question
-        # fields = 'question_text', 'pub_date'
         model = Choice
+        fields = '__all__'
+
+
+class QuestionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Question
         fields = '__all__'
