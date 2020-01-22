@@ -15,10 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+from polls.views import PollsView,QuestionsView,AnswerView,QuestionView
 
-from polls.views import PollsView,QuestionsView
+router = routers.DefaultRouter()
+router.register('question',QuestionView)
+router.register('answer', AnswerView)
 
 urlpatterns = [
+    path('api/',include(router.urls)),
     path('', include('pages.urls')),
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),

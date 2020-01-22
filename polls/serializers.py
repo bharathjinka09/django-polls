@@ -3,13 +3,13 @@ from rest_framework import serializers
 from polls.models import Question, Choice
 
 
-class PollsSerializer(serializers.ModelSerializer):
+class PollsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Choice
-        fields = '__all__'
+        fields = ('url','question','choice_text','votes')
 
 
-class QuestionSerializer(serializers.ModelSerializer):
+class QuestionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Question
-        fields = '__all__'
+        fields = ('url','question_text','pub_date')

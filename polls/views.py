@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import filters, viewsets
 
 from .models import Question, Choice
 from polls.serializers import PollsSerializer, QuestionSerializer
@@ -68,3 +69,14 @@ class QuestionsView(APIView):
         serializer = QuestionSerializer(questions, many=True)
 
         return Response(serializer.data)
+
+class QuestionView(viewsets.ModelViewSet):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    
+class AnswerView(viewsets.ModelViewSet):
+    queryset = Choice.objects.all()
+    serializer_class = PollsSerializer
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    
