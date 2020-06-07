@@ -2,6 +2,7 @@ from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import filters, viewsets
@@ -54,6 +55,16 @@ def vote(request, question_id):
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
+def resultsData(request, obj):
+    voteData = []
+
+    question = Question.objects.get(id=obj)
+    votes = question.choice_set.all()
+
+    for vote in votes:
+        voteData.append({vote.choice_text:vote.votes})
+    print(voteData)
+    return JsonResponse(voteData, safe=False)
 
 class PollsView(APIView):
     def get(self, request):
